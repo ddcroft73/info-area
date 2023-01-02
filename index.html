@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Information Area Web Component</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script src="https://kit.fontawesome.com/aebcb9f7bd.js" crossorigin="anonymous"></script>
+    <script src="info-area.js" defer></script>
+</head>
+
+<body>
+    <style>
+        body {
+            font-family:'Courier New', Courier, monospace;
+            margin-left: 20px;
+            background-color:rgb(208, 212, 215);
+        }
+        p {
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .code {
+            width: 500px;
+            background-color:rgb(177, 180, 177);
+            padding: 13px;
+            border-radius: 5px;            
+        }
+        .tag {
+            font-weight: bold;
+        }
+        .container {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+    </style>
+
+
+    <h1>Info-Area Web-Component</h1>
+    <p>
+      A simple litle component that will make it easier to drop in information and get the users attention about a subject.      
+    </p>
+
+    <h2>Usage: default</h2>     
+    <div class="code">     
+        &lt;<span class="tag">info-area title</span>="Hey!"</span>&gt;<br/>
+        &nbsp;&nbsp;Any information can be displayed here. The &nbsp;&nbsp;component will have 
+        a max width and a minimum &nbsp;&nbsp;height. Any valid HTML can be used.<br/>
+        &lt;<span class="tag">/info-area</span>&gt;    
+    </div>
+    
+    <p></p>
+<style>
+    /*body {
+        background-color:rgb(226, 250, 229);
+    }*/
+</style>
+    <div class="code">
+        &lt;<span class="tag">info-area <br>
+            &nbsp;&nbsp;title</span>="Hey!"</span><br />
+            &nbsp;&nbsp;<span class="tag">background-color-title</span></span>="red"</span><br />
+            &nbsp;&nbsp;<span class="tag">background-color-info</span></span>="gray"</span><br />
+            &nbsp;&nbsp;<span class="tag">font-size-title</span></span>="20px"</span><br />
+            &nbsp;&nbsp;<span class="tag">font-size-info</span></span>="14px"</span>&gt;<br />
+        &nbsp;&nbsp;Any information can be displayed here. The &nbsp;&nbsp;component will have
+        a max width and a minimum &nbsp;&nbsp;height. Any valid HTML can be used.<br />
+        &lt;<span class="tag">/info-area</span>&gt;
+    </div>
+
+    <div class="container">
+        <info-area title="Hey!">
+            Any information can be displayed here. The <a href=#>component</a>
+            will have a max width and a <a href=#>minimum</a> height. Any valid HTML can be
+            used.A simple litle component that will make it easier to drop in information and get the users attention about a
+            subject.
+        </info-area>
+    </div>
+
+    <div class="container">
+        <info-area 
+            title="Stop!"
+            background-color-title="rgb(158, 187, 163)"
+            background-color-info="white"
+            font-size-title="20px"
+            font-size-info="14px">
+        <h3>Lorem ipsum dolor</h3>
+        <p>
+            sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        </p>
+        </info-area>
+    </div>
+</body>
+</html>
