@@ -11,6 +11,12 @@ class InfoArea extends HTMLElement {
         const backGroundColorTitle = this.hasAttribute("background-color-title")
             ? this.getAttribute("background-color-title")
             : "rgb(241, 166, 16)";
+        const titleColor = this.hasAttribute("title-color")
+            ? this.getAttribute("title-color")
+            : "rgb(241, 245, 249)";
+        const infoColor = this.hasAttribute("info-color")
+            ? this.getAttribute("info-color")
+            : "black";
         const backGroundColorInfo = this.hasAttribute("background-color-info")
             ? this.getAttribute("background-color-info")
             : "rgb(253, 243, 219)";
@@ -20,6 +26,15 @@ class InfoArea extends HTMLElement {
         const fontSizeTitle = this.hasAttribute("font-size-title")
             ? this.getAttribute("font-size-title")
             : "18px";
+        const maxWidth = this.hasAttribute("max-width")
+            ? this.getAttribute("max-width")
+            : "100%";
+        const border = this.hasAttribute("border-width")
+            ? this.getAttribute("border-width")
+            : "0px";
+        const borderColor = this.hasAttribute("border-color")
+            ? this.getAttribute("border-color")
+            : "black";
 
         // initial component container    
         const container = document.createElement("div");
@@ -30,8 +45,9 @@ class InfoArea extends HTMLElement {
             display:flex;            
             width: 100%;
             height: 100%;
+            max-width: ${maxWidth};
             min-height: 75px;
-            border: 0px solid black;
+            border: ${border} solid ${borderColor};
             border-radius: 10px;
         }
         .left {
@@ -65,12 +81,13 @@ class InfoArea extends HTMLElement {
             margin-left: 12px;
             line-height: 18px;
             padding-right: 10px;
+            color: ${infoColor};
         }
         .title {
             font-style: italic;
             font-family:'Times New Roman', Times, serif;
             font-size: ${fontSizeTitle};
-            color:rgb(241, 245, 249);
+            color:${titleColor};
             text-shadow: 2px 2px 5px rgb(14, 14, 14);
         }`;
 
