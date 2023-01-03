@@ -36,7 +36,7 @@ class InfoArea extends HTMLElement {
             ? this.getAttribute("border-color")
             : "black";
 
-        // initial component container    
+        // initial component container
         const container = document.createElement("div");
         container.setAttribute("class", "info-container");
 
@@ -75,7 +75,7 @@ class InfoArea extends HTMLElement {
             border-top-right-radius: 10px;
             border-bottom-right-radius: 10px;
         }
-        .text {
+        #text {
             font-size: ${fontSizeInfo};            
             font-family:Arial, Helvetica, sans-serif;
             margin-left: 12px;
@@ -83,7 +83,7 @@ class InfoArea extends HTMLElement {
             padding-right: 10px;
             color: ${infoColor};
         }
-        .title {
+        #title {
             font-style: italic;
             font-family:'Times New Roman', Times, serif;
             font-size: ${fontSizeTitle};
@@ -93,12 +93,12 @@ class InfoArea extends HTMLElement {
 
         container.innerHTML = `
         <div class="left">
-            <span class="title">${title}</span>
+            <div id="title">${title}</div>
         </div>
         <div class="right">
-            <span class="text">${this.innerHTML}</span>
-         </div>`;
-
+            <div id="text"><slot></slot></div> <!--${this.innerHTML} Why not just use this than <slot>? -->
+        </div>`;
+        
         shadowRoot.appendChild(style);
         shadowRoot.appendChild(container);
     }
