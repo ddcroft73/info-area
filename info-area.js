@@ -6,7 +6,7 @@ class InfoArea extends HTMLElement {
         const shadowRoot = this.attachShadow({ mode: "open" });
         const style = document.createElement("style");
 
-        // user controlled attributes
+        // user controlled attributes, allows more control.
         const title = this.getAttribute("title");
         const backGroundColorTitle = this.hasAttribute("background-color-title")
             ? this.getAttribute("background-color-title")
