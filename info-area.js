@@ -1,11 +1,14 @@
 
 class InfoArea extends HTMLElement {
+    static get observedAttributes() {
+        return ["title", "background-color-title"];
+    }
     constructor() {
         super();
         const shadowRoot = this.attachShadow({ mode: "open" });
 
         // user controlled attributes, allows more control.
-        this.title = this.getAttribute("title");
+        /*this.title = this.getAttribute("title");
         this.backGroundColorTitle = this.hasAttribute("background-color-title")
             ? this.getAttribute("background-color-title")
             : "rgb(241, 166, 16)";
@@ -33,7 +36,33 @@ class InfoArea extends HTMLElement {
         this.borderColor = this.hasAttribute("border-color")
             ? this.getAttribute("border-color")
             : "black";
+*/
+        this.render();
+    }
 
+    attributeChangedCallback(attrName, oldValue, newValue) {
+        console.log(attrName, oldValue, newValue);
+        if (newValue !== oldValue) {
+            switch (attrName) {
+                case "backGroundColorTitle":
+                    this[attrName] = this.hasAttribute("background-color-title")
+                        ? this.getAttribute("background-color-title")
+                        : "rgb(241, 166, 16)";
+                    break;
+                /** Value attributes */
+                case "template":
+                    this[attrName] = newValue;
+                    break;
+            }
+        }
+    }
+
+    connectedCallback() {
+        //this.render();
+    }
+
+    render() {
+        const { shadowRoot } = this;
         // initial component container
         const style = document.createElement("style");
         const container = document.createElement("div");
@@ -101,7 +130,6 @@ class InfoArea extends HTMLElement {
         shadowRoot.appendChild(style);
         shadowRoot.appendChild(container);
     }
-
 }
 
-customElements.define('info-area', InfoArea);
+customElements.define("info-area", InfoArea);
