@@ -1,14 +1,31 @@
 
 class InfoArea extends HTMLElement {
+
+    // in anticipation of implementing a getter, setter interface to deal with
+    // a button,.    
     static get observedAttributes() {
-        return ["title", "background-color-title"];
-    }
+        return ["button"];
+    };
+
     constructor() {
         super();
-        const shadowRoot = this.attachShadow({ mode: "open" });
+        
+        this.state = {
+            buttonVisible: false            
+        };
 
-        // user controlled attributes, allows more control.
-        /*this.title = this.getAttribute("title");
+        const shadowRoot = this.attachShadow({ mode: "open" });
+   
+        this.getAttributes();
+        this.render();
+    }
+
+    getAttributes() {
+        // get any attributes set by user, or invoke defaults.
+        
+        this.title = this.hasAttribute("title")
+            ? this.getAttribute("title")
+            : "Hey!";
         this.backGroundColorTitle = this.hasAttribute("background-color-title")
             ? this.getAttribute("background-color-title")
             : "rgb(241, 166, 16)";
@@ -36,33 +53,19 @@ class InfoArea extends HTMLElement {
         this.borderColor = this.hasAttribute("border-color")
             ? this.getAttribute("border-color")
             : "black";
-*/
-        this.render();
-    }
 
-    attributeChangedCallback(attrName, oldValue, newValue) {
-        console.log(attrName, oldValue, newValue);
-        if (newValue !== oldValue) {
-            switch (attrName) {
-                case "backGroundColorTitle":
-                    this[attrName] = this.hasAttribute("background-color-title")
-                        ? this.getAttribute("background-color-title")
-                        : "rgb(241, 166, 16)";
-                    break;
-                /** Value attributes */
-                case "template":
-                    this[attrName] = newValue;
-                    break;
-            }
-        }
-    }
+// This is a WIP... I think I will need to do something a bit more flexible than 
+// this. The button has state, and it will have eevents and actions to define.
+// Maybe overkill.. but this i to learn afterall.
+        this.button = this.hasAttribute("button")
+            ? this.getAttribute("button")
+            : 'hidden';
 
-    connectedCallback() {
-        //this.render();
     }
 
     render() {
         const { shadowRoot } = this;
+        console.log(this.state.buttonVisible);
         // initial component container
         const style = document.createElement("style");
         const container = document.createElement("div");
@@ -94,7 +97,6 @@ class InfoArea extends HTMLElement {
         .right {            
             display: flex;
             justify-content:center;
-            align-items: center;
             flex: 10 auto;
             
             background-color: ${this.backGroundColorInfo};
@@ -117,6 +119,13 @@ class InfoArea extends HTMLElement {
             font-size: ${this.fontSizeTitle};
             color:${this.titleColor};
             text-shadow: 2px 2px 5px rgb(14, 14, 14);
+        }
+        #close {
+            height: 35px;
+            border: none;
+            background-color:  #ddc8b0;
+            border-radius: 100px;
+            visibility: ${this.button};
         }`;
 
         container.innerHTML = `
@@ -125,11 +134,12 @@ class InfoArea extends HTMLElement {
         </div>
         <div class="right">
             <div id="text"><slot></slot></div> <!--${this.innerHTML} Why not just use this than <slot>? -->
+            <button id="close">✖️</button>
         </div>`;
 
         shadowRoot.appendChild(style);
         shadowRoot.appendChild(container);
     }
-}
+};
 
 customElements.define("info-area", InfoArea);
