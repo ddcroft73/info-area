@@ -73,7 +73,15 @@ class InfoArea extends HTMLElement {
 
 
     connectedCallback() { 
-        console.log(this)
+        const { shadowRoot } = this;   
+        
+        // delete the message
+        const btn = shadowRoot.querySelector("#close");  
+        btn.addEventListener("click", () => {
+            const container = shadowRoot.querySelector(".info-container");  
+            container.style.display = "none";
+        });
+
     };
 
 
@@ -126,7 +134,7 @@ class InfoArea extends HTMLElement {
             font-size: ${this.infoFontSize};            
             font-family:Arial, Helvetica, sans-serif;
             margin-left: 12px;
-            
+
             line-height: 18px;
             padding-right: 10px;
             color: ${this.infoColor};
