@@ -2,6 +2,8 @@
 
 A simple Web Component that will allow a developer to drop in a component into the HTML like any othr tag. Consists of a title and body information. A card like info box that is divided into two sections. A colored column to the left with an attention getter, like Hey!, or Stop!, followed by an information area to the right where the programmer can offer vital information about the current subject matter.
 
+Messages may be removed wih the use of an optional close button.
+
 
 This seems like a simple enough Component to gain a solid understanding of how it all works.
 

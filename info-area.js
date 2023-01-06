@@ -9,68 +9,85 @@ class InfoArea extends HTMLElement {
 
     constructor() {
         super();
-        
+
         this.state = {
-            buttonVisible: false            
+            buttonVisible: false,
         };
 
         const shadowRoot = this.attachShadow({ mode: "open" });
-   
-        this.getAttributes();
+
+        // get attribute values from getters.
+        const title = this.title;
+        const backGroundColorTitle = this.backGroundColorTitle;
+        const titleColor = this.titleColor;
+        const infoColor = this.infoColor;
+        const backGroundColorInfo = this.backGroundColorInfo;
+        const infoFontSize = this.infoFontSize;
+        const titleFontSize = this.titleFontSize;
+        const maxWidth = this.maxWidth;
+        const border = this.border;
+        const borderColor = this.bordeColor;
+
+        // think about more for the button??
+        const button = this.button;
         this.render();
-    }
+    };
 
-    getAttributes() {
-        // get any attributes set by user, or invoke defaults.
-        
-        this.title = this.hasAttribute("title")
-            ? this.getAttribute("title")
-            : "Hey!";
-        this.backGroundColorTitle = this.hasAttribute("background-color-title")
-            ? this.getAttribute("background-color-title")
-            : "rgb(241, 166, 16)";
-        this.titleColor = this.hasAttribute("title-color")
-            ? this.getAttribute("title-color")
-            : "rgb(241, 245, 249)";
-        this.infoColor = this.hasAttribute("info-color")
-            ? this.getAttribute("info-color")
-            : "black";
-        this.backGroundColorInfo = this.hasAttribute("background-color-info")
-            ? this.getAttribute("background-color-info")
-            : "rgb(253, 243, 219)";
-        this.fontSizeInfo = this.hasAttribute("font-size-info")
-            ? this.getAttribute("font-size-info")
-            : ".7em";
-        this.fontSizeTitle = this.hasAttribute("font-size-title")
-            ? this.getAttribute("font-size-title")
-            : "18px";
-        this.maxWidth = this.hasAttribute("max-width")
-            ? this.getAttribute("max-width")
-            : "100%";
-        this.border = this.hasAttribute("border-width")
-            ? this.getAttribute("border-width")
-            : "0px";
-        this.borderColor = this.hasAttribute("border-color")
-            ? this.getAttribute("border-color")
-            : "black";
+    get title() {
+        return this.getAttribute('title') || 'Hey!';
+    };
+    get backGroundColorTitle() {
+        return (
+            this.getAttribute("background-color-title") || "rgb(241, 166, 16)"
+        );
+    };
+    get titleColor() {
+        return this.getAttribute("title-color") || "rgb(241, 245, 249)";
+    };
+    get infoColor() {
+        return this.getAttribute("info-color") || "black";
+    };
+    get backGroundColorInfo() {
+        return (
+            this.getAttribute("background-color-info") || "rgb(253, 243, 219)"
+        );
+    };
+    get infoFontSize() {
+        return this.getAttribute("font-size-info") || ".7em";
+    };
+    get titleFontSize() {
+        return this.getAttribute("font-size-title") || "18px";
+    };
+    get maWidth () {
+        return this.getAttribute("max-width") || '100%';
+    };
+    get border() {
+        return this.getAttribute("border-width") || "0px";
+    };
+    get borderColor() {
+        return this.getAttribute('border-color') || 'black';
+    };
+    get button() {
+        return this.getAttribute("button") || 'hidden';
+    };
 
-// This is a WIP... I think I will need to do something a bit more flexible than 
-// this. The button has state, and it will have eevents and actions to define.
-// Maybe overkill.. but this i to learn afterall.
-        this.button = this.hasAttribute("button")
-            ? this.getAttribute("button")
-            : 'hidden';
 
-    }
+    connectedCallback() { 
+        console.log(this)
+    };
+
 
     render() {
         const { shadowRoot } = this;
-        console.log(this.state.buttonVisible);
-        // initial component container
         const style = document.createElement("style");
+
+        // initial component container
         const container = document.createElement("div");
         container.setAttribute("class", "info-container");
 
+        // Allow the user to define the way the component looks by inserting the 
+        // properties directly into the code. I think you are supposed to si this
+        // with slots, but this is just easier. 
         style.textContent = `
         .info-container {
             display:flex;            
@@ -106,9 +123,10 @@ class InfoArea extends HTMLElement {
             border-bottom-right-radius: 10px;
         }
         #text {
-            font-size: ${this.fontSizeInfo};            
+            font-size: ${this.infoFontSize};            
             font-family:Arial, Helvetica, sans-serif;
             margin-left: 12px;
+            
             line-height: 18px;
             padding-right: 10px;
             color: ${this.infoColor};
@@ -116,7 +134,7 @@ class InfoArea extends HTMLElement {
         #title {
             font-style: italic;
             font-family:'Times New Roman', Times, serif;
-            font-size: ${this.fontSizeTitle};
+            font-size: ${this.titleFontSize};
             color:${this.titleColor};
             text-shadow: 2px 2px 5px rgb(14, 14, 14);
         }
@@ -128,12 +146,13 @@ class InfoArea extends HTMLElement {
             visibility: ${this.button};
         }`;
 
+        // define the rest of the component and insert any user defined attributes.
         container.innerHTML = `
         <div class="left">
             <div id="title">${this.title}</div>
         </div>
         <div class="right">
-            <div id="text"><slot></slot></div> <!--${this.innerHTML} Why not just use this than <slot>? -->
+            <div id="text">${this.innerHTML}</div> <!--Or I could use <slot>... why though? -->
             <button id="close">✖️</button>
         </div>`;
 
