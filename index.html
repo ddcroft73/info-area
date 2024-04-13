@@ -15,6 +15,9 @@
             font-family:'Courier New', Courier, monospace;
             margin-left: 20px;
             background-color:rgb(208, 212, 215);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         p {
             font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -28,83 +31,90 @@
         .tag {
             font-weight: bold;
         }
-
-
+        
+        #main-container {
+            width: 100%;
+            max-width: 800px;
+            min-width: 375px;
+            margin: 0 auto;
+            padding: 0 20px;
+        } 
+        
     </style>
 
+    <div id="main-container">
+        <h1>Info-Area Web-Component</h1>
+        <p>
+        A simple litle component that will make it easier to drop in 
+        information and get the users attention. Good for Hints, Reminders, Warnings etc.
+        Preset with a lot of useful attributes to coincide with any theme, and a preset default theme. Any valid 
+        HTML can be used inside the tags and inline style may also be used to dial in the appearance.       
+        </p>
 
-    <h1>Info-Area Web-Component</h1>
-    <p>
-      A simple litle component that will make it easier to drop in 
-      information and get the users attention. Good for Hints, Reminders, Warnings etc.
-      Preset with a lot of useful attributes to coincide with any theme, and a preset default theme. Any valid 
-      HTML can be used inside the tags and inline style may also be used to dial in the appearance.       
-    </p>
+        <h3>Usage: default</h3>     
+        <div class="code">     
+            &lt;<span class="tag">info-area title</span>="Hey!"</span>&gt;<br/>
+            Any information can be displayed here. The component will have 
+            a max width and a minimum height. Any valid HTML can be used.<br/>
+            &lt;<span class="tag">/info-area</span>&gt;    
+        </div>
+        
+        <br/>
+        <h3>Usage: All options</h3>
+        <div class="code">
+            &lt;<span class="tag">info-area <br>
+                &nbsp;&nbsp;title</span>="Hey!"</span><br />
+                &nbsp;&nbsp;<span class="tag">title-color</span></span>="black"</span><br />
+                &nbsp;&nbsp;<span class="tag">info-color</span></span>="tomato"</span><br />
+                &nbsp;&nbsp;<span class="tag">background-color-title</span></span>="rgb(158, 187, 163)"</span><br />
+                &nbsp;&nbsp;<span class="tag">background-color-info</span></span>="white"</span><br />
+                &nbsp;&nbsp;<span class="tag">font-size-title</span></span>="20px"</span><br />
+                &nbsp;&nbsp;<span class="tag">font-size-info</span></span>="14px"</span><br />
+                &nbsp;&nbsp;<span class="tag">border-width</span></span>="1px"</span><br />
+                &nbsp;&nbsp;<span class="tag">border-color</span></span>="gray"</span><br />
+                &nbsp;&nbsp;<span class="tag">button</span></span>="visible"</span><br />
+                &nbsp;&nbsp;<span class="tag">max-width</span></span>="500px"</span>&gt;<br />
+            <br>
+            &lth3>&ltstyle="color: rgb(83, 20, 9)">Lorem ipsum dolor&lt/h3>
+            <br>
+            &ltp><br>
+            <b>ANY VALID HTML CAN BE USED INSIDE THE TAG. in addition to predefined attributes.</b><br>
+            sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip<br>
+            &lt/p>
+    <br />
+            &lt;<span class="tag">/info-area</span>&gt;
+        </div>
+    <br />
 
-    <h3>Usage: default</h3>     
-    <div class="code">     
-        &lt;<span class="tag">info-area title</span>="Hey!"</span>&gt;<br/>
-        Any information can be displayed here. The component will have 
-        a max width and a minimum height. Any valid HTML can be used.<br/>
-        &lt;<span class="tag">/info-area</span>&gt;    
+        <info-area>
+            Any information can be displayed here. The <a href=#>component</a>
+            will have a max width and a <a href=#>many</a> other preset attributes. Any valid HTML can be
+            used. A simple litle component that will make it easier to drop in information and get the users attention about a
+            subject.
+        </info-area>
+        
+    <br />
+
+        <info-area 
+            title="Stop!"
+            title-color="black"
+            info-color="rgb(100, 62, 40)"
+            background-color-title="tomato"
+            background-color-info="white"
+            font-size-title="20px"
+            font-size-info="14px"
+            max-width="500px"
+            border-width="1px"
+            border-color="gray"
+            button="visible">
+        <h3 style="color:rgb(83, 20, 9)">Attention:</h3>
+        <p>
+            sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip        
+        </p>
+        </info-area>
+        <br/>
     </div>
-    
-    <br/>
-    <h3>Usage: All options</h3>
-    <div class="code">
-        &lt;<span class="tag">info-area <br>
-            &nbsp;&nbsp;title</span>="Hey!"</span><br />
-            &nbsp;&nbsp;<span class="tag">title-color</span></span>="black"</span><br />
-            &nbsp;&nbsp;<span class="tag">info-color</span></span>="tomato"</span><br />
-            &nbsp;&nbsp;<span class="tag">background-color-title</span></span>="rgb(158, 187, 163)"</span><br />
-            &nbsp;&nbsp;<span class="tag">background-color-info</span></span>="white"</span><br />
-            &nbsp;&nbsp;<span class="tag">font-size-title</span></span>="20px"</span><br />
-            &nbsp;&nbsp;<span class="tag">font-size-info</span></span>="14px"</span><br />
-            &nbsp;&nbsp;<span class="tag">border-width</span></span>="1px"</span><br />
-            &nbsp;&nbsp;<span class="tag">border-color</span></span>="gray"</span><br />
-            &nbsp;&nbsp;<span class="tag">button</span></span>="visible"</span><br />
-            &nbsp;&nbsp;<span class="tag">max-width</span></span>="500px"</span>&gt;<br />
-        <br>
-        &lth3>&ltstyle="color: rgb(83, 20, 9)">Lorem ipsum dolor&lt/h3>
-        <br>
-        &ltp><br>
-        <b>ANY VALID HTML CAN BE USED INSIDE THE TAG. in addition to predefined attributes.</b><br>
-        sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip<br>
-        &lt/p>
-<br />
-        &lt;<span class="tag">/info-area</span>&gt;
-    </div>
-<br />
-
-    <info-area>
-        Any information can be displayed here. The <a href=#>component</a>
-        will have a max width and a <a href=#>many</a> other preset attributes. Any valid HTML can be
-        used. A simple litle component that will make it easier to drop in information and get the users attention about a
-        subject.
-    </info-area>
-    
-<br />
-
-    <info-area 
-        title="Stop!"
-        title-color="black"
-        info-color="rgb(100, 62, 40)"
-        background-color-title="tomato"
-        background-color-info="white"
-        font-size-title="20px"
-        font-size-info="14px"
-        max-width="500px"
-        border-width="1px"
-        border-color="gray"
-        button="visible">
-    <h3 style="color:rgb(83, 20, 9)">Attention:</h3>
-    <p>
-        sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip        
-    </p>
-    </info-area>
-    <br/>
-
 </body>
 </html>
